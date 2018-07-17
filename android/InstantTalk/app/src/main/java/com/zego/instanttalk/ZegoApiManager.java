@@ -44,14 +44,17 @@ public class ZegoApiManager {
         // type=2 用于视频聊天
         mZegoAVKit.setBusinessType(2);
 
-        // 即构分配的key与id
-        byte[] signKey = {
-                (byte)0x91, (byte)0x93, (byte)0xcc, (byte)0x66, (byte)0x2a, (byte)0x1c, (byte)0x0e, (byte)0xc1,
-                (byte)0x35, (byte)0xec, (byte)0x71, (byte)0xfb, (byte)0x07, (byte)0x19, (byte)0x4b, (byte)0x38,
-                (byte)0x41, (byte)0xd4, (byte)0xad, (byte)0x83, (byte)0x78, (byte)0xf2, (byte)0x59, (byte)0x90,
-                (byte)0xe0, (byte)0xa4, (byte)0x0c, (byte)0x7f, (byte)0xf4, (byte)0x28, (byte)0x41, (byte)0xf7
-        };
-        int appID = 1;
+        /**
+         * 请开发者联系 ZEGO support 获取各自业务的 AppID 与 signKey
+         * AppID 填写样式示例：1234567890L
+         * signKey 填写样式示例：new byte[] { (byte) 0x00, (byte) 0x01, (byte) 0x02, (byte) 0x03, (byte) 0x04, (byte) 0x05, (byte) 0x06, (byte) 0x07,
+                (byte) 0x08, (byte) 0x09,  (byte) 0x00, (byte) 0x01, (byte) 0x02, (byte) 0x03, (byte) 0x04, (byte) 0x05, (byte) 0x06, (byte) 0x07,
+                (byte) 0x08, (byte) 0x09, (byte) 0x00, (byte) 0x01, (byte) 0x02, (byte) 0x03, (byte) 0x04, (byte) 0x05, (byte) 0x06, (byte) 0x07,
+                (byte) 0x08, (byte) 0x09,  (byte) 0x00, (byte) 0x01};
+        **/
+
+        byte[] signKey = ;
+        int appID = ;
 
         // 初始化sdk
         mZegoAVKit.init(appID, signKey, context);

@@ -28,14 +28,10 @@ void setCustomAppIDAndSign(uint32 appid, NSData* data)
     g_signKey = data;
 }
 
-
 NSData * zegoAppSignFromServer()
 {
-    //!! Demo 把signKey先写到代码中
     //!! 规范用法：这个signKey需要从server下发到App，避免在App中存储，防止盗用
-    
-    Byte signkey[] = {0x91, 0x93, 0xcc, 0x66, 0x2a, 0x1c, 0x0e, 0xc1, 0x35, 0xec, 0x71, 0xfb, 0x07, 0x19, 0x4b, 0x38, 0x41, 0xd4, 0xad, 0x83, 0x78, 0xf2, 0x59, 0x90, 0xe0, 0xa4, 0x0c, 0x7f, 0xf4, 0x28, 0x41, 0xf7};
-    
+    Byte signkey[] = {0x00};
     return [NSData dataWithBytes:signkey length:32];
 }
 
@@ -79,7 +75,7 @@ ZegoLiveApi * getZegoAV_ShareInstance()
             g_zegoAV = [[ZegoLiveApi alloc] initWithAppID:g_appID appSignature:g_signKey];
         } else {
             NSData * appSign =  zegoAppSignFromServer();
-            g_zegoAV = [[ZegoLiveApi alloc] initWithAppID:1 appSignature:appSign];
+            g_zegoAV = [[ZegoLiveApi alloc] initWithAppID:0 appSignature:appSign];
         }
         
         [g_zegoAV requireHardwareAccelerated:g_requireHardwareAccelerated];
@@ -93,17 +89,18 @@ void releaseZegoAV_ShareInstance()
     g_zegoAV = nil;
 }
 
+
+#warning 请开发者联系 ZEGO support 获取各自业务的 AppID 与 signKey
+#warning AppID 填写样式示例：1234567890
+#warning signKey 填写样式示例：{0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x00,0x01}
 BizLiveRoom *getBizRoomInstance()
 {
     if (g_bizRoom == nil)
     {
         [BizLiveRoom setLogLevel:4];
         
-        uint32 appID = 766949305;
-        Byte signKey[] = { 0x18,  0x9d,  0x83,  0x5a,  0x62,  0xe8,  0xec,
-             0xbf,  0xc6,  0x58,  0x53,  0xeb,  0xaf,  0x26, 0x5a,
-             0xab,  0x34,  0x48,  0x58,  0x6f,  0x7a,  0x9d,  0xd0,
-             0x10,  0xee,  0xb3,  0x81,  0x78,  0x6d,  0x86,  0x18,  0x5d};
+        uint32 appID = ;
+        Byte signKey[] = ;
         NSData *signKeyData = [NSData dataWithBytes:signKey length:32];
         
         g_bizRoom = [[BizLiveRoom alloc] initWithBizID:appID bizSignature:signKeyData];
